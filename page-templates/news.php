@@ -22,46 +22,55 @@ get_header();?>
 </div>
 
 <div class="outer-container mb5 scroll-target">
-    <div class="container content news-feed">
-        <div class="controls">
-            <!-- Get a list of all categories in the database, excluding those not assigned to posts -->
-            <span class="filter-heading">Filter</span>
-            <ul>
-                <li type="button" data-filter="all">All</li>
-                <?php switch_to_blog(1); ?>
-                <?php $all_categories = get_categories(array(
-                    'hide_empty' => true
-                ));?>
+<div class="container content">
+    <div class="controls">
+        <!-- Get a list of all categories in the database, excluding those not assigned to posts -->
+        <span class="filter-heading">Filter</span>
+        <ul>
+            <li type="button" data-filter="all">All</li>
+            <?php switch_to_blog(1); ?>
+            <?php $all_categories = get_categories(array(
+                'hide_empty' => true
+            ));?>
 
-                <!-- Iterate through each category -->
+            <!-- Iterate through each category -->
 
-                <?php foreach($all_categories as $category): ?>
-                <!-- Output control button markup, setting the data-filter attribute as the category "slug" -->
+            <?php foreach($all_categories as $category): ?>
+            <!-- Output control button markup, setting the data-filter attribute as the category "slug" -->
 
-                <li type="button" data-filter=".<?php echo $category->slug; ?>"><?php echo $category->name; ?></li>
-                <?php endforeach; ?>
-                <?php restore_current_blog(); ?>
-            </ul>
-        </div>
-        <?php $silverlessPosts = new WP_Query(array(
-    				'post_type'=>'post',
-    				'post_status'=>'publish',
-    				'posts_per_page'=>-1
-    			));
-    			if ( $silverlessPosts->have_posts() ) :
-    			while ( $silverlessPosts->have_posts() ) :
-    			$silverlessPosts->the_post();
-    			$postThumbImage = get_field('thumbnail_image'); ?>
-        <div class="news-feed__item news-summary__item">
-            <div class="image" style="background:url(<?php echo $postThumbImage['url'];?>);"><a
-                    href="<?php the_permalink(); ?>"></a></div>
-            <p class="date"><?php echo get_the_date('d.m.Y'); ?></p>
-            <h3 class="heading heading__7"><?php the_title(); ?></h4>
-                <?php the_excerpt(); ?>
-                <a href="<?php the_permalink(); ?>" class="button button__bare button__bare--brand">Read More</a>
-        </div>
-        <?php endwhile; wp_reset_postdata();endif; ?>
+            <li type="button" data-filter=".<?php echo $category->slug; ?>"><?php echo $category->name; ?></li>
+            <?php endforeach; ?>
+            <?php restore_current_blog(); ?>
+        </ul>
     </div>
+</div>
+<div class="container news-feed content">
+    <?php switch_to_blog(1); ?>
+    <?php $silverlessPosts = new WP_Query(array(
+            'post_type'=>'post',
+            'post_status'=>'publish',
+            'posts_per_page'=>16
+        ));
+        if ( $silverlessPosts->have_posts() ) :
+        while ( $silverlessPosts->have_posts() ) :
+        $silverlessPosts->the_post();
+        $categories = get_the_category();
+    $slugs = wp_list_pluck($categories, 'slug');
+    $class_names = join(' ', $slugs);
+        $postThumbImage = get_field('thumbnail_image'); ?>
+    <div class="news-feed__item mix<?php if ($class_names) { echo ' ' . $class_names;} ?> mb3">
+        <div class="image" style="background:url(<?php echo $postThumbImage['url'];?>);"><a
+                href="<?php the_permalink(); ?>"></a></div>
+        <p class="date"><?php echo get_the_date('d.m.Y'); ?></p>
+        <h3 class="heading heading__7"><?php the_title(); ?></h4>
+            <?php the_excerpt(); ?>
+            <span class="dark-highlight"></span>
+            <a href="<?php the_permalink(); ?>" class="button button__bare button__bare--brand">Read
+                More</a>
+    </div>
+    <?php endwhile; wp_reset_postdata();endif; ?>
+    <?php restore_current_blog(); ?>
+</div>
 </div>
 
 <div class="outer-container">
@@ -77,5 +86,11 @@ get_header();?>
 
 </div>
 <!--wrapper-->
-
+<script>
+    var mixer = mixitup('.news-feed', {
+        controls: {
+            toggleLogic: 'and'
+        }
+    });
+    </script>
 <?php get_footer();?>
