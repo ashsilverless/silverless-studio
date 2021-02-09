@@ -47,7 +47,12 @@ get_header();?>
                             href="<?php the_sub_field('page_link', '118'); ?>"><?php the_sub_field('heading', '118');?></a>
                     </div>
                     <div class="target <?php if ( $actual_link == $page_link ) { echo 'open'; } else {} ?>">
-                        <h3><?php the_sub_field('content', '118');?></h3>
+                        <?php if( have_rows('content_items') ):
+                        while( have_rows('content_items') ): the_row();
+                        ?>
+                            <h3><?php the_sub_field('content');?></h3>
+                        <?php endwhile; endif;?>
+                        
                     </div>
                 </div>
                 <?php endwhile; endif;?>
