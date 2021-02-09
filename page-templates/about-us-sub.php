@@ -50,7 +50,7 @@ get_header();?>
                         <?php if( have_rows('content_items') ):
                         while( have_rows('content_items') ): the_row();
                         ?>
-                            <h3><?php the_sub_field('content');?></h3>
+                            <h3 class="heading heading__6"><?php the_sub_field('content');?></h3>
                         <?php endwhile; endif;?>
                         
                     </div>
