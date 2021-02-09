@@ -2102,8 +2102,8 @@ p.sub-heading {
   color: #CBC8C7;
 }
 .news-feed__item {
-  -ms-grid-column-span: 6;
-  grid-column: span 6;
+  -ms-grid-column-span: 4;
+  grid-column: span 4;
   margin-bottom: 2rem;
 }
 .news-feed__item .image {
@@ -2119,7 +2119,7 @@ p.sub-heading {
   transition: all 0.5s ease;
   border-radius: 1rem;
   margin-bottom: 1rem;
-  height: 13rem;
+  height: 10rem;
 }
 .news-feed__item .image a {
   display: block;

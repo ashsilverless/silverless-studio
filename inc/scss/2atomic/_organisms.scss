@@ -517,7 +517,7 @@
     color: $color_grey_light;
   }
   &__item {
-    grid-column: span 6;
+    grid-column: span 4;
     margin-bottom: 2rem;
     .image {
       @include backgroundCover;
@@ -525,7 +525,7 @@
       transition: all 0.5s ease;
       border-radius: 1rem;
       margin-bottom: 1rem;
-      height: 13rem;
+      height: 10rem;
       a {
         display: block;
         height: 100%;
