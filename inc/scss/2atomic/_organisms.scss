@@ -1079,3 +1079,46 @@ body .mapboxgl-ctrl-attrib-inner {
     }
   }
 }
+.controls {
+  grid-column: 1/13;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  font-weight: 200;
+  display: flex;
+  flex-direction: column;
+
+  .filter-heading {
+      font-size: 0.8em;
+  }
+
+  ul {
+      margin-top: 0.5rem;
+
+      li::before {
+          content: unset;
+          padding: 0;
+      }
+  }
+
+  li {
+      cursor: pointer;
+      list-style: none;
+      display: inline;
+      padding: 0 .25rem;
+      border-right: 1px solid #f7f3f2;
+      font-size: 0.8rem;
+      letter-spacing: .05rem;
+
+      &:last-of-type {
+          border: none;
+      }
+
+      &:first-of-type {
+          padding-left: 0;
+      }
+  }
+
+  .mixitup-control-active {
+      color: $color_brand_highlight;
+  }
+}

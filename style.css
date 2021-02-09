@@ -2759,6 +2759,50 @@ body .mapboxgl-ctrl-attrib-inner {
   margin-left: 0.25rem;
 }
 
+.controls {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 12;
+  grid-column: 1/13;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  font-weight: 200;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.controls .filter-heading {
+  font-size: 0.8em;
+}
+.controls ul {
+  margin-top: 0.5rem;
+}
+.controls ul li::before {
+  content: unset;
+  padding: 0;
+}
+.controls li {
+  cursor: pointer;
+  list-style: none;
+  display: inline;
+  padding: 0 0.25rem;
+  border-right: 1px solid #f7f3f2;
+  font-size: 0.8rem;
+  letter-spacing: 0.05rem;
+}
+.controls li:last-of-type {
+  border: none;
+}
+.controls li:first-of-type {
+  padding-left: 0;
+}
+.controls .mixitup-control-active {
+  color: #FE4C42;
+}
+
 /*! == PAGES == */
 /*=== Positioning Page Elements===*/
 .cta-contact-header {
