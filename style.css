@@ -2281,6 +2281,9 @@ p.sub-heading {
 .toggle-list__item .target.open:before {
   width: 100%;
 }
+.toggle-list__item .target .heading:after {
+  display: none;
+}
 
 .background-overlay {
   position: absolute;
