@@ -1,0 +1,27 @@
+/*! == VARIABLES == */
+
+$brand-primary: hsl(0, 65%, 14%); /* Dark Red */
+$brand-secondary: hsl(14, 100%, 28%); /* Mid Red  */
+$brand-tertiary: hsl(187, 64%, 72%); /* Sky Blue */
+$brand-green: hsl(88, 37%, 45%); /* Light green */
+$brand-red: hsl(12, 100%, 31%); /* Dark Red */
+$brand-light-grey: hsl(0, 0%, 88%);
+$brand-mid-grey: hsl(0, 0%, 79%);
+$brand-dark-grey: hsl(0, 0%, 30%);
+
+$brand-font: zeitung, sans-serif;
+$body-font: zeitung, sans-serif;
+$supporting-font: zeitung-micro, sans-serif;
+
+$fastEffect: all 0.5s ease;
+$slowEffect: all 1s ease;
+
+$gutter: 0.5em;
+$columns: 12;
+
+$breakpoints: (
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);

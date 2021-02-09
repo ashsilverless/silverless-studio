@@ -1,0 +1,49 @@
+/*! == PAGES == */
+
+/*=== Positioning Page Elements===*/
+
+.cta-contact-header {
+    position: fixed;
+    z-index: 50;
+    width:100%;
+    text-align: right;
+    .button {
+        z-index: 100;
+    }
+}
+
+main {
+    padding-top: 10vh;
+}
+
+.single-work {
+    .quote {
+        grid-column: 5/13;
+    }
+}
+
+.page-template-legal {
+    .content {
+        .heading {
+            grid-column: 5/12;
+        }
+    }
+    .sub-menu {
+        border-top:1px solid $color_grey_light;
+        padding-top:1rem;
+    }
+}
+.change-form {
+    grid-column: 1/-1;
+    iframe.clickup-embed {
+        border: none !important;
+        .cu-form__scroll {
+            padding: 2rem 0 0;
+        }
+        .cu-form__container {
+            margin: 0 5% 30px;
+            width: 90%;
+            max-width: none;
+        }
+    }
+}

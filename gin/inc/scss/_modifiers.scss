@@ -1,0 +1,229 @@
+/*! == MODIFIERS == */
+
+/* Flex Containers */
+
+$columnWidth:         (calc(100% + #{$gutter * 2}) / $columns);
+$columnWidthNoGutter: (calc(100% + 0em) / $columns);
+
+@function get-width($width) {
+	$column: calc(#{$columnWidth} * #{$width} - #{$gutter * 2});
+	@return $column;
+}
+
+@function get-width-no-gutter($width) {
+	$column: calc(#{$columnWidthNoGutter} * #{$width});
+	@return $column;
+}
+
+@for $i from 1 through $columns {
+	.cols-#{$i} {
+	
+		$j: ($i - 1);
+		
+		@if $i == 1 {
+			$j: 0;
+		}
+		
+		> div {
+			&:nth-of-type(#{$i}n - #{$j}) {
+				margin-left: 0;
+			}
+			
+			&:nth-of-type(#{$i}n) {
+				margin-right: 0;
+			}
+		}
+	}
+  
+	.col-#{$i} {
+		margin-left: $gutter;
+		margin-right: $gutter;
+		flex: 0 0 get-width($i);
+	}
+	
+	.no-gutter {
+		
+		> .col-#{$i} {
+			margin-left: 0;
+			margin-right: 0;
+			flex: 0 0 get-width-no-gutter($i);
+		}
+	}
+}
+
+@each $name, $size in $breakpoints {
+	
+	@media (min-width: #{$size}) {
+		
+		@for $i from 1 through $columns {
+			
+			.cols-#{$name}-#{$i} {
+			
+				$j: ($i - 1);
+				
+				@if $i == 1 {
+					$j: 0;
+				}
+				
+				> div {
+					&:nth-of-type(n) {
+						margin-left: $gutter;
+						margin-right: $gutter;
+					}
+					
+					&:nth-of-type(#{$i}n - #{$j}) {
+						margin-left: 0;
+					}
+					
+					&:nth-of-type(#{$i}n) {
+						margin-right: 0;
+					}
+				}
+			}
+			
+			.col-#{$name}-#{$i} {
+				flex: 0 0 get-width($i);
+			}
+		}
+	}
+}
+
+/* Position */
+
+/* 
+Loop to generate margins and padding based on ems.
+Syntax is mt3 = margin top 3em, pl5 = padding left 5em
+*/
+
+$distance: (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20); // Amount string.
+$sides: (top, bottom, left, right); // Sides var 
+
+@each $amount in $distance {
+    @each $side in $sides {
+        .m#{str-slice($side, 0, 1)}#{$amount} {
+            margin-#{$side}: #{$amount}em ;
+        }
+        .p#{str-slice($side, 0, 1)}#{$amount} {
+            padding-#{$side}: #{$amount}em;
+        }
+        .col-m#{str-slice($side, 0, 1)}#{$amount} > div[class^='col-'] { 
+            margin-#{$side}: #{$amount}em;
+        }
+        .col-p#{str-slice($side, 0, 1)}#{$amount} > div[class^='col-'] {
+            padding-#{$side}: #{$amount}em;
+        }
+    }
+}
+
+.sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 150px;
+}
+
+.sticky:before,
+.sticky:after {
+    content: '';
+    display: table;
+}
+
+.center {
+	text-align: center;
+}
+
+.justify {
+	text-align: justify;
+}
+
+/* Height */
+
+$height: (0, 25, 50, 75, 100); // Amount string.
+
+@each $amount in $height {
+        .h#{$amount} {
+            height: #{$amount}vh;
+    }
+}
+
+/* Typography */
+
+$weight: (100, 200, 300, 400, 500, 600, 700, 800, 900); // Amount string.
+
+@each $amount in $weight {
+        .font#{$amount} {
+            font-weight: #{$amount};
+    }
+}
+
+/* Font Size */
+
+$sizes: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10); // Sizes string.
+
+@each $size in $sizes {
+        .size#{$size} {
+            font-size: #{$size}em;
+    }
+}
+
+/* Animation */
+
+@-webkit-keyframes pulse {
+    0% {
+       opacity: 1.0;
+    }
+    50% {
+       opacity: 0.1;
+    }
+    100% {
+       opacity: 1.0;
+    }
+}
+
+.slide-up {
+    transform: translateY(50px);
+    opacity: 0;
+    transition: all 1s ease;
+    
+    &.active {
+        transform:translateY(0);
+        opacity: 1;
+    }
+}
+
+.slide-down {
+    transform: translateY(-50px);
+    opacity: 0;
+    transition: all 1s ease;
+    
+    &.active {
+        transform:translateY(0);
+        opacity: 1;
+    }
+}
+
+.slide-right {
+    transform: translate(-100px, 50px);
+    opacity: 0;
+    transition: all 2s ease;
+    
+    &.active {
+        transform:translate(0, 0);
+        opacity: 1;
+    }
+}
+
+.slow-fade {
+    opacity:0;
+    transition:opacity 3s ease;
+    
+    &.active {
+        opacity:1;
+    }
+}
+
+@function gutter-width($x) {
+  @return (($x - 1) / $x) + em;
+}
+
+
+

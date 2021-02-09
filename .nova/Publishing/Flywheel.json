@@ -1,0 +1,9 @@
+{
+  "identifier" : "DF5376EC-4E1C-4E8D-9B87-B72D57C2E5FC",
+  "ignoredFilePatterns" : [
+    "inc\/js\/.prepros_compiled.js"
+  ],
+  "remotePath" : "\/org-silverless\/silverless-new\/wp-content\/themes\/silverless-studio",
+  "server" : "Flywheel",
+  "usesPublishing" : true
+}
