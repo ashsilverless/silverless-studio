@@ -23,6 +23,26 @@ get_header();?>
 
 <div class="outer-container mb5 scroll-target">
     <div class="container content news-feed">
+        <div class="controls">
+            <!-- Get a list of all categories in the database, excluding those not assigned to posts -->
+            <span class="filter-heading">Filter</span>
+            <ul>
+                <li type="button" data-filter="all">All</li>
+                <?php switch_to_blog(1); ?>
+                <?php $all_categories = get_categories(array(
+                    'hide_empty' => true
+                ));?>
+
+                <!-- Iterate through each category -->
+
+                <?php foreach($all_categories as $category): ?>
+                <!-- Output control button markup, setting the data-filter attribute as the category "slug" -->
+
+                <li type="button" data-filter=".<?php echo $category->slug; ?>"><?php echo $category->name; ?></li>
+                <?php endforeach; ?>
+                <?php restore_current_blog(); ?>
+            </ul>
+        </div>
         <?php $silverlessPosts = new WP_Query(array(
     				'post_type'=>'post',
     				'post_status'=>'publish',
